@@ -1,5 +1,5 @@
 package com.example.sensyneapp.data
 
-class AppDataManager : DataManager{
-    
+class AppDataManager : DataManager {
+
 }
