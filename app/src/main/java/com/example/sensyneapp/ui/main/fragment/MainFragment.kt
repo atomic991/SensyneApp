@@ -1,8 +1,12 @@
 package com.example.sensyneapp.ui.main.fragment
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,6 +38,11 @@ class MainFragment: BaseFragment<MainFragmentBinding, MainViewModel>(), MainNavi
 
     override fun getLayoutId(): Int = R.layout.main_fragment
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun getViewModel(): MainViewModel {
         viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
         viewModel.setNavigator(this)
@@ -52,10 +61,41 @@ class MainFragment: BaseFragment<MainFragmentBinding, MainViewModel>(), MainNavi
         viewModel.loadData()
     }
 
-    override fun showHospitals(response: List<Hospital>) {
-        hospital_list.apply {
-            adapter = MainAdapter(response){
-                startActivity(DetailsActivity.createIntent(context, it))
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.search, menu)
+
+        val menuItem = menu.findItem(R.id.action_search)
+        val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchTextListener = object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.search(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        }
+
+
+        val closeSearchListener = SearchView.OnCloseListener {
+            viewModel.search(null)
+            false
+        }
+
+        val searchView = menuItem.actionView as SearchView
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+        searchView.setOnQueryTextListener(searchTextListener);
+        searchView.setOnCloseListener(closeSearchListener)
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    override fun showHospitals(items: List<Hospital>?) {
+        items?.let {
+            hospital_list.apply {
+                adapter = MainAdapter(items){
+                    startActivity(DetailsActivity.createIntent(context, it))
+                }
             }
         }
     }

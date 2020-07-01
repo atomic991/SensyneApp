@@ -27,6 +27,18 @@ class MainViewModel(
         )
     }
 
+    fun search(query: String?) {
+        if(query?.isNotBlank() == true){
+            val filteredHospitals = hospitals?.filter {
+                it.toString().contains(query, ignoreCase = true)
+            }
+            getNavigator().showHospitals(filteredHospitals)
+        } else {
+            getNavigator().showHospitals(hospitals)
+        }
+
+
+    }
 
 
 }
