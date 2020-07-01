@@ -12,6 +12,7 @@ import com.example.sensyneapp.data.model.Hospital
 import com.example.sensyneapp.databinding.MainFragmentBinding
 import com.example.sensyneapp.ui.ViewModelProviderFactory
 import com.example.sensyneapp.ui.base.BaseFragment
+import com.example.sensyneapp.ui.details.DetailsActivity
 import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
 
@@ -54,7 +55,7 @@ class MainFragment: BaseFragment<MainFragmentBinding, MainViewModel>(), MainNavi
     override fun showHospitals(response: List<Hospital>) {
         hospital_list.apply {
             adapter = MainAdapter(response){
-                Toast.makeText(context, "Click ${it.id}", Toast.LENGTH_SHORT).show()
+                startActivity(DetailsActivity.createIntent(context, it))
             }
         }
     }

@@ -1,5 +1,7 @@
 package com.example.sensyneapp.di
 
+import com.example.sensyneapp.ui.details.DetailsActivity
+import com.example.sensyneapp.ui.details.fragment.DetailsProvider
 import com.example.sensyneapp.ui.main.MainActivity
 import com.example.sensyneapp.ui.main.fragment.MainFragmentProvider
 import dagger.Module
@@ -13,4 +15,8 @@ abstract class ActivityBuilder {
     ])
     abstract fun provideMainActivity(): MainActivity
 
+    @ContributesAndroidInjector(modules = [
+        DetailsProvider::class
+    ])
+    abstract fun provideDetailsActivity(): DetailsActivity
 }
