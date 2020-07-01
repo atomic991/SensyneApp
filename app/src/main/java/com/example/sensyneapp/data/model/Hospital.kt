@@ -2,10 +2,10 @@ package com.example.sensyneapp.data.model
 
 data class Hospital(
     val id: Long,
-    val subType: String,
-    val sector: String,
+    val subType: String?,
+    val sector: String?,
     val isPims: Boolean?,
-    val name: String,
+    val name: String?,
     val address: String?,
     val city: String?,
     val county: String?,

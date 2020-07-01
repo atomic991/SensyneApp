@@ -19,7 +19,7 @@ class MainViewModel(
                 .subscribeOn(getSchedulerProvider().io())
                 .subscribe(
                     { response ->
-                        this.hospitals = hospitals
+                        this.hospitals = response
                         getNavigator().showHospitals(response)
                     },
                     { error -> handleError(error) }

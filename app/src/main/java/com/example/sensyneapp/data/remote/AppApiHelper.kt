@@ -5,13 +5,12 @@ import io.reactivex.Single
 import io.reactivex.SingleEmitter
 import java.io.BufferedReader
 import java.io.IOException
-import java.io.InputStreamReader
 import javax.inject.Inject
 
-class AppApiHelper @Inject constructor(private val api: API): ApiHelper{
+class AppApiHelper @Inject constructor(private val api: API): ApiHelper {
 
     companion object {
-        private const val DELIMITER = "\uFFFD"
+        private const val DELIMITER = '¬'
     }
 
     override fun loadCSV(): Single<List<Hospital>> {
@@ -20,7 +19,7 @@ class AppApiHelper @Inject constructor(private val api: API): ApiHelper{
             if(responseBody.isSuccessful){
                 responseBody.body()?.byteStream()?.let {
                     val hospitals = mutableListOf<Hospital>()
-                    val reader = BufferedReader(InputStreamReader(it))
+                    val reader = BufferedReader(it.reader(Charsets.ISO_8859_1))
                     try {
                         var line: String? = null
                         reader.readLine() // skip header
@@ -38,8 +37,8 @@ class AppApiHelper @Inject constructor(private val api: API): ApiHelper{
                                         row[11],
                                         row[12],
                                         row[13],
-                                        row[14].toDouble(),
-                                        row[15].toDouble(),
+                                        row[14].toDoubleOrNull(),
+                                        row[15].toDoubleOrNull(),
                                         row[17],
                                         row[18],
                                         row[19],
