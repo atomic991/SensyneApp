@@ -1,5 +1,8 @@
 package com.example.sensyneapp.data
 
-class AppDataManager : DataManager {
+import com.example.sensyneapp.data.remote.ApiHelper
+import javax.inject.Inject
+
+class AppDataManager @Inject constructor(private val apiHelper: ApiHelper) : DataManager {
 
 }

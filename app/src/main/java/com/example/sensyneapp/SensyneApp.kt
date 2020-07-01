@@ -1,4 +1,4 @@
-package com.example.sensyneapp.ui
+package com.example.sensyneapp
 
 import android.app.Application
 import com.example.sensyneapp.di.DaggerAppComponent
@@ -6,7 +6,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-class SensyneApp: Application(), HasAndroidInjector{
+class SensyneApp: Application(), HasAndroidInjector {
 
     @Inject
     internal lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Any>

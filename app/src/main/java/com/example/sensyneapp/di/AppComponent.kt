@@ -1,7 +1,7 @@
 package com.example.sensyneapp.di
 
 import android.app.Application
-import com.example.sensyneapp.ui.SensyneApp
+import com.example.sensyneapp.SensyneApp
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

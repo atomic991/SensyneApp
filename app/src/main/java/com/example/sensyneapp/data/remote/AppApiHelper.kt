@@ -1,6 +1,8 @@
 package com.example.sensyneapp.data.remote
 
-class AppApiHelper : ApiHelper{
+import javax.inject.Inject
+
+class AppApiHelper @Inject constructor() : ApiHelper{
 
 
 
