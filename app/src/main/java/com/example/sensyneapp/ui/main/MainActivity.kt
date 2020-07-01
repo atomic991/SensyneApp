@@ -1,8 +1,8 @@
-package com.example.sensyneapp
+package com.example.sensyneapp.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.sensyneapp.ui.main.MainFragment
+import com.example.sensyneapp.R
 
 class MainActivity : AppCompatActivity() {
 
