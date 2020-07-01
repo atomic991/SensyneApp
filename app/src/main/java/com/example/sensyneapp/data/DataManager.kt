@@ -1,3 +1,8 @@
 package com.example.sensyneapp.data
 
-interface DataManager
+import com.example.sensyneapp.data.remote.ApiHelper
+
+interface DataManager {
+
+    fun getApiHelper(): ApiHelper
+}

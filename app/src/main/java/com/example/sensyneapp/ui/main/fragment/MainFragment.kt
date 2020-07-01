@@ -1,8 +1,11 @@
 package com.example.sensyneapp.ui.main.fragment
 
+import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.example.sensyneapp.R
 import com.example.sensyneapp.BR
+import com.example.sensyneapp.data.model.Hospital
 import com.example.sensyneapp.databinding.MainFragmentBinding
 import com.example.sensyneapp.ui.ViewModelProviderFactory
 import com.example.sensyneapp.ui.base.BaseFragment
@@ -32,5 +35,14 @@ class MainFragment: BaseFragment<MainFragmentBinding, MainViewModel>(), MainNavi
         return viewModel
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.loadData()
+    }
+
+    override fun showHospitals(response: List<Hospital>) {
+
+    }
 
 }

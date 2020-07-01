@@ -5,4 +5,6 @@ import javax.inject.Inject
 
 class AppDataManager @Inject constructor(private val apiHelper: ApiHelper) : DataManager {
 
+    override fun getApiHelper(): ApiHelper = apiHelper
+
 }
